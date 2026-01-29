@@ -1,17 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
 
 :root {
-    --primary-color: #5a67d8; /* Deep Purple */
-    --secondary-color: #81e6d9; /* Teal */
-    --accent-color: #f6ad55;   /* Orange for highlights */
-    --text-color: #2d3748;    /* Dark Gray */
-    --light-text-color: #718096; /* Medium Gray */
-    --bg-color: #edf2f7;      /* Light Gray Background */
-    --container-bg: #ffffff;  /* White Container */
-    --border-color: #e2e8f0;  /* Lighter Gray Border */
-    --border-radius: 16px;
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
-    --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --primary-color: #5a67d8;
+    --secondary-color: #81e6d9;
+    --text-color: #2d3748;
+    --bg-color: #f7fafc;
+    --container-bg: #ffffff;
+    --light-gray: #e2e8f0;
+    --border-radius: 12px;
 }
 
 body {
@@ -29,97 +25,34 @@ body {
 
 .container {
     background-color: var(--container-bg);
-    padding: 35px 45px;
+    padding: 30px 40px;
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow-medium);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 640px; /* Slightly wider for better question display */
+    max-width: 600px;
     text-align: center;
     overflow: hidden; /* For animations */
-    position: relative; /* For absolute positioning of elements if needed */
 }
 
 h1 {
     color: var(--text-color);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: 700;
-    font-size: 2.2em;
 }
 
-#main-description {
-    color: var(--light-text-color);
-    margin-bottom: 40px;
+body .container > p {
+    color: #718096;
+    margin-bottom: 30px;
     font-weight: 500;
-    font-size: 1.1em;
-}
-
-/* User Type Selection */
-#user-type-selection {
-    animation: fadeIn 0.6s ease-out;
-}
-
-#user-type-selection p {
-    font-size: 1.2em;
-    font-weight: 600;
-    margin-bottom: 25px;
-    color: var(--text-color);
-}
-
-.selection-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.selection-btn {
-    width: 100%;
-    padding: 18px;
-    border-radius: 10px;
-    font-size: 1.2em;
-    font-weight: 700;
-    cursor: pointer;
-    border: 2px solid var(--primary-color);
-    background-color: var(--primary-color);
-    color: white;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-light);
-}
-
-.selection-btn:nth-child(2) { /* For the second button (Novice) */
-    background-color: transparent;
-    color: var(--primary-color);
-}
-
-.selection-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.selection-btn:nth-child(2):hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-/* Quiz Area & Paths */
-#quiz-area {
-    width: 100%;
-    position: relative;
-}
-
-.path-container {
-    width: 100%;
-    /* display: none; Managed by JS */
 }
 
 /* Progress Bar */
 .progress-container {
     width: 100%;
-    background-color: var(--border-color);
+    background-color: var(--light-gray);
     border-radius: 20px;
-    height: 12px;
-    margin-bottom: 35px;
-    overflow: hidden;
+    height: 10px;
+    margin-bottom: 30px;
 }
 
 .progress-bar {
@@ -134,8 +67,7 @@ h1 {
 .question-step {
     display: none;
     text-align: left;
-    animation: fadeIn 0.6s ease-out;
-    padding-top: 10px; /* Add some space for smooth transition */
+    animation: fadeIn 0.5s;
 }
 
 .question-step.active-step {
@@ -143,11 +75,10 @@ h1 {
 }
 
 .question-step p {
-    font-size: 1.15em;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     color: var(--text-color);
-    margin-bottom: 25px;
-    line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 @keyframes fadeIn {
@@ -157,20 +88,19 @@ h1 {
 
 /* Inputs */
 input[type="text"] {
-    width: calc(100% - 2px); /* Account for border */
-    padding: 14px 18px;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    font-size: 1em;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 16px;
     box-sizing: border-box;
     margin-top: 10px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s;
 }
 
 input[type="text"]:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
 }
 
 .radio-group {
@@ -185,123 +115,91 @@ input[type="text"]:focus {
 
 .radio-group label {
     background-color: var(--bg-color);
-    color: var(--text-color);
-    padding: 15px 20px;
-    border-radius: 10px;
+    color: #4a5568;
+    padding: 12px 18px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 1.05em;
-    border: 1px solid var(--border-color);
-    text-align: left;
-    display: block; /* Make label take full width */
-    font-weight: 500;
+    transition: all 0.3s;
+    font-size: 16px;
+    border: 1px solid var(--light-gray);
+    text-align: center;
 }
 
 .radio-group input[type="radio"]:checked + label {
     background-color: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
-    font-weight: 600;
-    box-shadow: 0 4px 10px rgba(90, 103, 216, 0.3);
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(90, 103, 216, 0.4);
 }
 
-.radio-group label:hover {
-    background-color: var(--border-color);
-}
-
-.radio-group input[type="radio"]:checked + label:hover {
-    background-color: var(--primary-color); /* Keep checked state on hover */
-}
-
-
-/* Navigation Buttons */
+/* Navigation */
 .navigation-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 40px;
-    gap: 15px;
-}
-
-.navigation-buttons button {
-    flex: 1; /* Make buttons take equal width */
-    font-size: 1.05em;
-    padding: 15px 25px;
+    margin-top: 30px;
 }
 
 button {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 15px 25px;
-    border-radius: 10px;
-    font-size: 1.05em;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: var(--shadow-light);
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(0,0,0,0.1);
 }
 
 button:active {
     transform: translateY(0);
-    box-shadow: var(--shadow-light);
 }
 
 .prev-btn {
-    background-color: var(--border-color);
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
+    background-color: #a0aec0;
 }
 
 .prev-btn:hover {
-    background-color: #cbd5e0; /* Lighter gray hover */
-    color: var(--text-color);
+    background-color: #718096;
 }
 
-#recommendBtnNovice, #recommendBtnExpert {
+#recommendBtn {
     width: 100%;
-    padding: 18px;
-    font-size: 1.2em;
-    background-color: var(--accent-color);
-    color: white;
-    border-color: var(--accent-color);
+    padding: 15px;
+    font-size: 18px;
 }
-#recommendBtnNovice:hover, #recommendBtnExpert:hover {
-    background-color: #ed8936;
-    border-color: #ed8936;
-}
-
 
 /* Result Box */
 .result-box {
-    margin-top: 25px;
-    padding: 35px;
-    background-color: var(--bg-color);
-    border: 1px solid var(--border-color);
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #f0f4ff;
+    border: 1px solid #d3dfff;
     border-radius: var(--border-radius);
     text-align: left;
-    animation: fadeIn 0.6s ease-out;
+    animation: fadeIn 0.5s;
 }
 
 .result-box h2 {
     color: var(--text-color);
     margin-top: 0;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 12px;
-    font-size: 1.8em;
-    font-weight: 700;
+    padding-bottom: 10px;
 }
 
 .result-box p {
-    font-size: 1.1em;
-    color: var(--text-color);
+    font-size: 16px;
+    color: #4a5568;
     margin-bottom: 15px;
-    line-height: 1.8;
+    line-height: 1.6;
 }
 
 .result-box strong {
@@ -310,24 +208,11 @@ button:active {
 }
 
 #startOverBtn {
-    margin-top: 30px;
-    background-color: var(--light-text-color);
-    color: white;
+    margin-top: 20px;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
     width: 100%;
-    padding: 18px;
-    font-size: 1.1em;
 }
 #startOverBtn:hover {
-    background-color: #4a5568;
-}
-
-/* Expert Path Specific Styles */
-#expert-path .question-section {
-    margin-bottom: 30px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 20px;
-}
-#expert-path .question-section:last-of-type {
-    border-bottom: none;
-    padding-bottom: 0;
+    background-color: #4fd1c5;
 }
