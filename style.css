@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
 
 :root {
-    --primary-color: #5a67d8;
-    --secondary-color: #81e6d9;
-    --text-color: #2d3748;
-    --bg-color: #f7fafc;
-    --container-bg: #ffffff;
-    --light-gray: #e2e8f0;
-    --border-radius: 12px;
+    --primary-color: #5a67d8; /* Deep Purple */
+    --secondary-color: #81e6d9; /* Teal */
+    --accent-color: #f6ad55;   /* Orange for highlights */
+    --text-color: #2d3748;    /* Dark Gray */
+    --light-text-color: #718096; /* Medium Gray */
+    --bg-color: #edf2f7;      /* Light Gray Background */
+    --container-bg: #ffffff;  /* White Container */
+    --border-color: #e2e8f0;  /* Lighter Gray Border */
+    --border-radius: 16px;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -25,34 +29,97 @@ body {
 
 .container {
     background-color: var(--container-bg);
-    padding: 30px 40px;
+    padding: 35px 45px;
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-medium);
     width: 100%;
-    max-width: 600px;
+    max-width: 640px; /* Slightly wider for better question display */
     text-align: center;
     overflow: hidden; /* For animations */
+    position: relative; /* For absolute positioning of elements if needed */
 }
 
 h1 {
     color: var(--text-color);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     font-weight: 700;
+    font-size: 2.2em;
 }
 
-body .container > p {
-    color: #718096;
-    margin-bottom: 30px;
+#main-description {
+    color: var(--light-text-color);
+    margin-bottom: 40px;
     font-weight: 500;
+    font-size: 1.1em;
+}
+
+/* User Type Selection */
+#user-type-selection {
+    animation: fadeIn 0.6s ease-out;
+}
+
+#user-type-selection p {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: var(--text-color);
+}
+
+.selection-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.selection-btn {
+    width: 100%;
+    padding: 18px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-light);
+}
+
+.selection-btn:nth-child(2) { /* For the second button (Novice) */
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+.selection-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.selection-btn:nth-child(2):hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Quiz Area & Paths */
+#quiz-area {
+    width: 100%;
+    position: relative;
+}
+
+.path-container {
+    width: 100%;
+    /* display: none; Managed by JS */
 }
 
 /* Progress Bar */
 .progress-container {
     width: 100%;
-    background-color: var(--light-gray);
+    background-color: var(--border-color);
     border-radius: 20px;
-    height: 10px;
-    margin-bottom: 30px;
+    height: 12px;
+    margin-bottom: 35px;
+    overflow: hidden;
 }
 
 .progress-bar {
@@ -67,7 +134,8 @@ body .container > p {
 .question-step {
     display: none;
     text-align: left;
-    animation: fadeIn 0.5s;
+    animation: fadeIn 0.6s ease-out;
+    padding-top: 10px; /* Add some space for smooth transition */
 }
 
 .question-step.active-step {
@@ -75,10 +143,11 @@ body .container > p {
 }
 
 .question-step p {
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 1.15em;
+    font-weight: 600;
     color: var(--text-color);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    line-height: 1.5;
 }
 
 @keyframes fadeIn {
@@ -88,19 +157,20 @@ body .container > p {
 
 /* Inputs */
 input[type="text"] {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--light-gray);
-    border-radius: 8px;
-    font-size: 16px;
+    width: calc(100% - 2px); /* Account for border */
+    padding: 14px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1em;
     box-sizing: border-box;
     margin-top: 10px;
-    transition: border-color 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 input[type="text"]:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
 }
 
 .radio-group {
@@ -115,91 +185,123 @@ input[type="text"]:focus {
 
 .radio-group label {
     background-color: var(--bg-color);
-    color: #4a5568;
-    padding: 12px 18px;
-    border-radius: 8px;
+    color: var(--text-color);
+    padding: 15px 20px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s;
-    font-size: 16px;
-    border: 1px solid var(--light-gray);
-    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 1.05em;
+    border: 1px solid var(--border-color);
+    text-align: left;
+    display: block; /* Make label take full width */
+    font-weight: 500;
 }
 
 .radio-group input[type="radio"]:checked + label {
     background-color: var(--primary-color);
     color: white;
     border-color: var(--primary-color);
-    font-weight: 700;
-    box-shadow: 0 4px 10px rgba(90, 103, 216, 0.4);
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(90, 103, 216, 0.3);
 }
 
-/* Navigation */
+.radio-group label:hover {
+    background-color: var(--border-color);
+}
+
+.radio-group input[type="radio"]:checked + label:hover {
+    background-color: var(--primary-color); /* Keep checked state on hover */
+}
+
+
+/* Navigation Buttons */
 .navigation-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 40px;
+    gap: 15px;
+}
+
+.navigation-buttons button {
+    flex: 1; /* Make buttons take equal width */
+    font-size: 1.05em;
+    padding: 15px 25px;
 }
 
 button {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 1.05em;
     font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-light);
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 7px 14px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 button:active {
     transform: translateY(0);
+    box-shadow: var(--shadow-light);
 }
 
 .prev-btn {
-    background-color: #a0aec0;
+    background-color: var(--border-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
 }
 
 .prev-btn:hover {
-    background-color: #718096;
+    background-color: #cbd5e0; /* Lighter gray hover */
+    color: var(--text-color);
 }
 
-#recommendBtn {
+#recommendBtnNovice, #recommendBtnExpert {
     width: 100%;
-    padding: 15px;
-    font-size: 18px;
+    padding: 18px;
+    font-size: 1.2em;
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
 }
+#recommendBtnNovice:hover, #recommendBtnExpert:hover {
+    background-color: #ed8936;
+    border-color: #ed8936;
+}
+
 
 /* Result Box */
 .result-box {
-    margin-top: 20px;
-    padding: 30px;
-    background-color: #f0f4ff;
-    border: 1px solid #d3dfff;
+    margin-top: 25px;
+    padding: 35px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
     text-align: left;
-    animation: fadeIn 0.5s;
+    animation: fadeIn 0.6s ease-out;
 }
 
 .result-box h2 {
     color: var(--text-color);
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 10px;
+    padding-bottom: 12px;
+    font-size: 1.8em;
+    font-weight: 700;
 }
 
 .result-box p {
-    font-size: 16px;
-    color: #4a5568;
+    font-size: 1.1em;
+    color: var(--text-color);
     margin-bottom: 15px;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 .result-box strong {
@@ -208,11 +310,24 @@ button:active {
 }
 
 #startOverBtn {
-    margin-top: 20px;
-    background-color: var(--secondary-color);
-    color: var(--text-color);
+    margin-top: 30px;
+    background-color: var(--light-text-color);
+    color: white;
     width: 100%;
+    padding: 18px;
+    font-size: 1.1em;
 }
 #startOverBtn:hover {
-    background-color: #4fd1c5;
+    background-color: #4a5568;
+}
+
+/* Expert Path Specific Styles */
+#expert-path .question-section {
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+#expert-path .question-section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
 }
