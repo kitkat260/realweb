@@ -9,13 +9,18 @@
     <meta name="google-adsense-account" content="ca-pub-5100671380810488">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body class="bg-gray-100 flex flex-col items-center justify-between min-h-screen">
 
-    <div class="container bg-white rounded-2xl shadow-xl p-8 md:p-12 mx-4 w-full max-w-2xl">
+    <div class="container bg-white rounded-2xl shadow-xl p-8 md:p-12 mx-4 my-8 w-full max-w-2xl">
         
         <div id="main-content">
             <h1 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-2">노트북 추천 설문</h1>
             <p id="main-description" class="text-gray-500 text-center mb-8">당신에게 딱 맞는 노트북을 찾아드립니다!</p>
+
+            <div class="text-left text-gray-600 space-y-4 mb-10">
+                <p>노트북 구매, 더 이상 고민하지 마세요. 수많은 모델과 복잡한 사양 속에서 길을 잃으셨나요? 저희의 간단한 설문은 당신의 전공, 주요 사용 목적, 그리고 예산에 맞춰 최적의 노트북 사양을 제안해 드립니다.</p>
+                <p>단 10개의 질문에 답변하고, 당신의 라이프스타일에 완벽하게 부합하는 노트북이 무엇인지 확인해보세요.</p>
+            </div>
             
             <!-- Progress Bar -->
             <div id="progress-container" class="w-full bg-gray-200 rounded-full h-2.5 mb-8" style="display: none;">
@@ -33,7 +38,19 @@
             <button id="startOverBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">다시 시작하기</button>
         </div>
 
+        <div class="border-t border-gray-200 mt-12 pt-8 text-left">
+            <h3 class="text-xl font-bold text-gray-700 mb-4">About / 동작 방식</h3>
+            <p class="text-gray-600">이 서비스는 사용자가 입력한 답변을 바탕으로 점수화 시스템을 통해 최적의 CPU와 RAM 조합을 추천합니다. 예를 들어, '3D 설계'와 같은 고사양 작업을 선택하면 높은 점수를, '단순 문서 작업'을 선택하면 낮은 점수를 부여하여, 최종 점수에 따라 사양을 매칭하는 방식입니다. 이 추천은 일반적인 가이드라인이며, 실제 구매 시에는 개별 모델의 리뷰와 상세 스펙을 추가로 확인하시는 것을 권장합니다.</p>
+        </div>
     </div>
+
+    <footer class="w-full text-center p-4 text-gray-500 text-sm">
+        <div class="max-w-2xl mx-auto">
+            <a href="index.html" class="hover:underline">홈</a> | 
+            <a href="privacy.html" class="hover:underline">개인정보처리방침</a>
+            <p class="mt-2">© 2026 Laptop Recommender. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -42,6 +59,7 @@
             const startOverBtn = document.getElementById('startOverBtn');
             const progressBar = document.getElementById('progressBar');
             const progressContainer = document.getElementById('progress-container');
+            const mainContent = document.getElementById('main-content'); // Get the main content div
 
             const questions = [
                 {
@@ -161,16 +179,21 @@
             const showResult = () => {
                 console.log("--- 노트북 추천 설문 결과 ---");
                 console.log(JSON.stringify(formData, null, 2));
-                document.getElementById('main-content').style.display = 'none';
+                mainContent.style.display = 'none';
                 resultArea.style.display = 'block';
             };
             
             const startQuiz = () => {
                 currentStep = 0;
                 Object.keys(formData).forEach(key => delete formData[key]);
-                document.getElementById('main-content').style.display = 'block';
+                mainContent.style.display = 'block';
                 resultArea.style.display = 'none';
-                renderStep(0);
+                quizArea.innerHTML = '<button id="start-quiz-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">설문 시작하기</button>';
+                progressContainer.style.display = 'none';
+
+                document.getElementById('start-quiz-btn').addEventListener('click', () => {
+                    renderStep(0);
+                });
             };
 
             startOverBtn.addEventListener('click', startQuiz);
