@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>노트북 추천</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>노트북 사양 추천</h1>
+        <p>어떤 용도로 사용하실 건가요? (예: 게임, 영상 편집, 문서 작업)</p>
+        <textarea id="usageInput" rows="4" placeholder="여기에 사용 용도를 입력하세요..."></textarea>
+        <button id="recommendBtn">추천 받기</button>
+        <div id="result" class="result-box" style="display: none;">
+            <h2>추천 사양</h2>
+            <p><strong>CPU:</strong> <span id="cpuResult"></span></p>
+            <p><strong>RAM:</strong> <span id="ramResult"></span></p>
+        </div>
+    </div>
+    <script>
+        const recommendBtn = document.getElementById('recommendBtn');
+        const usageInput = document.getElementById('usageInput');
+        const resultDiv = document.getElementById('result');
+        const cpuResult = document.getElementById('cpuResult');
+        const ramResult = document.getElementById('ramResult');
+
+        const recommendations = {
+            "게임": { cpu: "Intel Core i7 / AMD Ryzen 7 이상", ram: "16GB 이상" },
+            "영상 편집": { cpu: "Intel Core i9 / AMD Ryzen 9", ram: "32GB 이상" },
+            "디자인": { cpu: "Intel Core i7 / AMD Ryzen 7 이상", ram: "16GB 이상" },
+            "프로그래밍": { cpu: "Intel Core i5 / AMD Ryzen 5 이상", ram: "16GB 이상" },
+            "문서 작업": { cpu: "Intel Core i3 / AMD Ryzen 3 이상", ram: "8GB" },
+            "웹 서핑": { cpu: "Intel Core i3 / AMD Ryzen 3 이상", ram: "8GB" },
+            "기본": { cpu: "Intel Core i5 / AMD Ryzen 5", ram: "8GB" }
+        };
+
+        recommendBtn.addEventListener('click', () => {
+            const usage = usageInput.value.toLowerCase();
+            let recommendation = recommendations["기본"]; // Default
+
+            if (usage.includes('게임')) {
+                recommendation = recommendations["게임"];
+            } else if (usage.includes('영상') || usage.includes('편집')) {
+                recommendation = recommendations["영상 편집"];
+            } else if (usage.includes('디자인') || usage.includes('포토샵') || usage.includes('일러스트')) {
+                recommendation = recommendations["디자인"];
+            } else if (usage.includes('프로그래밍') || usage.includes('코딩')) {
+                recommendation = recommendations["프로그래밍"];
+            } else if (usage.includes('문서') || usage.includes('오피스') || usage.includes('과제')) {
+                recommendation = recommendations["문서 작업"];
+            } else if (usage.includes('웹') || usage.includes('인터넷')) {
+                recommendation = recommendations["웹 서핑"];
+            }
+
+            cpuResult.textContent = recommendation.cpu;
+            ramResult.textContent = recommendation.ram;
+            resultDiv.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
