@@ -9,179 +9,223 @@
 <body>
     <div class="container">
         <h1>노트북 사양 추천</h1>
-        <div class="question-section">
-            <p>1. 동시에 몇 개나 띄워놓고 쓰시나요?</p>
-            <div class="radio-group">
-                <input type="radio" id="apps1_3" name="simultaneous_apps" value="low" checked>
-                <label for="apps1_3">1~3개 (간단한 작업)</label>
-                <input type="radio" id="apps4_7" name="simultaneous_apps" value="medium">
-                <label for="apps4_7">4~7개 (멀티태스킹)</label>
-                <input type="radio" id="apps8_plus" name="simultaneous_apps" value="high">
-                <label for="apps8_plus">8개 이상 (전문 작업)</label>
+        <p>당신에게 딱 맞는 노트북을 찾아보세요!</p>
+
+        <div id="quiz-area">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="question-step active-step" data-step="1">
+                <p>1. 동시에 몇 개나 띄워놓고 쓰시나요?</p>
+                <div class="radio-group">
+                    <input type="radio" id="apps1_3" name="simultaneous_apps" value="low" checked>
+                    <label for="apps1_3">1~3개 (간단한 작업)</label>
+                    <input type="radio" id="apps4_7" name="simultaneous_apps" value="medium">
+                    <label for="apps4_7">4~7개 (멀티태스킹)</label>
+                    <input type="radio" id="apps8_plus" name="simultaneous_apps" value="high">
+                    <label for="apps8_plus">8개 이상 (전문 작업)</label>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="next-btn">다음</button>
+                </div>
+            </div>
+
+            <div class="question-step" data-step="2">
+                <p>2. 주로 어떤 앱/프로그램을 사용하시나요?</p>
+                <input type="text" id="mainApps" placeholder="예: MS워드, 포토샵, 롤, 유튜브, 캐드">
+                <div class="navigation-buttons">
+                    <button class="prev-btn">이전</button>
+                    <button class="next-btn">다음</button>
+                </div>
+            </div>
+
+            <div class="question-step" data-step="3">
+                <p>3. 이 노트북을 몇 년 정도 사용할 예정이신가요?</p>
+                <div class="radio-group">
+                    <input type="radio" id="years1_2" name="usage_years" value="short" checked>
+                    <label for="years1_2">1~2년</label>
+                    <input type="radio" id="years3_4" name="usage_years" value="medium">
+                    <label for="years3_4">3~4년</label>
+                    <input type="radio" id="years5_plus" name="usage_years" value="long">
+                    <label for="years5_plus">5년 이상</label>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="prev-btn">이전</button>
+                    <button class="next-btn">다음</button>
+                </div>
+            </div>
+            
+            <div class="question-step" data-step="4">
+                <p>4. 자주 하는 게임이 있으신가요?</p>
+                <input type="text" id="favoriteGame" placeholder="없으면 비워두세요. 예: 롤, 배틀그라운드">
+                <div class="navigation-buttons">
+                    <button class="prev-btn">이전</button>
+                    <button class="next-btn">다음</button>
+                </div>
+            </div>
+
+            <div class="question-step" data-step="5">
+                <p>5. 화상 회의나 온라인 강의 비중이 높은가요?</p>
+                 <div class="radio-group">
+                    <input type="radio" id="videoConfYes" name="video_conference" value="yes" checked>
+                    <label for="videoConfYes">예</label>
+                    <input type="radio" id="videoConfNo" name="video_conference" value="no">
+                    <label for="videoConfNo">아니오</label>
+                </div>
+                <div class="navigation-buttons">
+                    <button class="prev-btn">이전</button>
+                    <button id="recommendBtn">결과 보기</button>
+                </div>
             </div>
         </div>
 
-        <div class="question-section">
-            <p>2. 주로 어떤 앱/프로그램을 사용하시나요? (예: MS워드, 포토샵, 롤, 유튜브, 캐드)</p>
-            <input type="text" id="mainApps" placeholder="여러 개라면 쉼표로 구분해서 입력해주세요.">
-        </div>
-
-        <div class="question-section">
-            <p>3. 이 노트북을 몇 년 정도 사용할 예정이신가요?</p>
-            <div class="radio-group">
-                <input type="radio" id="years1_2" name="usage_years" value="short" checked>
-                <label for="years1_2">1~2년</label>
-                <input type="radio" id="years3_4" name="usage_years" value="medium">
-                <label for="years3_4">3~4년</label>
-                <input type="radio" id="years5_plus" name="usage_years" value="long">
-                <label for="years5_plus">5년 이상</label>
-            </div>
-        </div>
-
-        <div class="question-section">
-            <p>4. 자주 하는 게임이 있으신가요? (고사양 게임 여부)</p>
-            <input type="text" id="favoriteGame" placeholder="리그오브레전드, 오버워치, 배틀그라운드 등">
-        </div>
-
-        <div class="question-section">
-            <p>5. 화상 회의나 온라인 강의 비중이 높은가요?</p>
-            <div class="radio-group">
-                <input type="radio" id="videoConfYes" name="video_conference" value="yes" checked>
-                <label for="videoConfYes">예</label>
-                <input type="radio" id="videoConfNo" name="video_conference" value="no">
-                <label for="videoConfNo">아니오</label>
-            </div>
-        </div>
-
-        <div class="question-section">
-            <p>6. 파일은 주로 어디에 저장하시나요? (클라우드, 노트북 자체, 외장하드)</p>
-            <input type="text" id="fileStorage" placeholder="구글 드라이브, OneDrive, 노트북 저장 등">
-        </div>
-
-        <div class="question-section">
-            <p>7. 화면 터치나 펜 기능이 필요하신가요?</p>
-            <div class="radio-group">
-                <input type="radio" id="touchPenYes" name="touch_pen" value="yes" checked>
-                <label for="touchPenYes">예</label>
-                <input type="radio" id="touchPenNo" name="touch_pen" value="no">
-                <label for="touchPenNo">아니오</label>
-            </div>
-        </div>
-
-        <button id="recommendBtn">추천받기</button>
         <div id="result" class="result-box" style="display: none;">
             <h2>추천 사양</h2>
             <p><strong>CPU:</strong> <span id="cpuResult"></span></p>
             <p><strong>RAM:</strong> <span id="ramResult"></span></p>
+            <button id="startOverBtn">다시 시작하기</button>
         </div>
     </div>
     <script>
-        const recommendBtn = document.getElementById('recommendBtn');
-        const resultDiv = document.getElementById('result');
-        const cpuResult = document.getElementById('cpuResult');
-        const ramResult = document.getElementById('ramResult');
+        document.addEventListener('DOMContentLoaded', () => {
+            const steps = document.querySelectorAll('.question-step');
+            const nextButtons = document.querySelectorAll('.next-btn');
+            const prevButtons = document.querySelectorAll('.prev-btn');
+            const recommendBtn = document.getElementById('recommendBtn');
+            const startOverBtn = document.getElementById('startOverBtn');
+            const progressBar = document.getElementById('progressBar');
+            const quizArea = document.getElementById('quiz-area');
+            const resultDiv = document.getElementById('result');
+            const cpuResult = document.getElementById('cpuResult');
+            const ramResult = document.getElementById('ramResult');
+            
+            let currentStep = 1;
+            const totalSteps = steps.length;
+            const formData = {};
 
-        // Define recommendation tiers
-        const cpuTiers = [
-            "Intel Core i3 / AMD Ryzen 3 (기본 웹 서핑, 문서 작업)",
-            "Intel Core i5 / AMD Ryzen 5 (일상적인 멀티태스킹, 가벼운 게임)",
-            "Intel Core i7 / AMD Ryzen 7 (고사양 멀티태스킹, 전문 작업, 중간 게임)",
-            "Intel Core i9 / AMD Ryzen 9 (최고 사양 전문 작업, 고사양 게임, 영상 편집)"
-        ];
+            const updateProgress = () => {
+                progressBar.style.width = `${((currentStep - 1) / (totalSteps -1)) * 100}%`;
+            };
 
-        const ramTiers = [
-            "8GB (기본 웹 서핑, 문서 작업)",
-            "16GB (멀티태스킹, 대부분의 전문 작업, 게임)",
-            "32GB 이상 (고사양 전문 작업, 영상 편집, 고사양 게임)"
-        ];
+            const showStep = (stepNumber) => {
+                steps.forEach(step => {
+                    step.classList.remove('active-step');
+                });
+                document.querySelector(`.question-step[data-step="${stepNumber}"]`).classList.add('active-step');
+                currentStep = stepNumber;
+                updateProgress();
+            };
 
-        recommendBtn.addEventListener('click', () => {
-            let cpuScore = 0;
-            let ramScore = 0;
+            const saveStepData = (stepNumber) => {
+                const step = document.querySelector(`.question-step[data-step="${stepNumber}"]`);
+                const radio = step.querySelector('input[type="radio"]:checked');
+                const text = step.querySelector('input[type="text"]');
+                
+                if (radio) {
+                    formData[radio.name] = radio.value;
+                }
+                if (text) {
+                    formData[text.id] = text.value;
+                }
+            };
+            
+            nextButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    saveStepData(currentStep);
+                    if (currentStep < totalSteps) {
+                        showStep(currentStep + 1);
+                    }
+                });
+            });
 
-            // 1. 동시에 몇 개나 띄워놓고 쓰시나요?
-            const simultaneousApps = document.querySelector('input[name="simultaneous_apps"]:checked').value;
-            if (simultaneousApps === 'medium') {
-                cpuScore += 1;
-                ramScore += 1;
-            } else if (simultaneousApps === 'high') {
-                cpuScore += 2;
-                ramScore += 2;
-            }
+            prevButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    saveStepData(currentStep);
+                    if (currentStep > 1) {
+                        showStep(currentStep - 1);
+                    }
+                });
+            });
 
-            // 2. 주로 어떤 앱/프로그램을 사용하시나요?
-            const mainApps = document.getElementById('mainApps').value.toLowerCase();
-            if (mainApps.includes('캐드') || mainApps.includes('cad') || mainApps.includes('영상 편집') || mainApps.includes('3d') || mainApps.includes('렌더링')) {
-                cpuScore += 3;
-                ramScore += 3;
-            } else if (mainApps.includes('포토샵') || mainApps.includes('일러스트') || mainApps.includes('디자인') || mainApps.includes('프로그래밍') || mainApps.includes('코딩')) {
-                cpuScore += 2;
-                ramScore += 2;
-            } else if (mainApps.includes('ms워드') || mainApps.includes('엑셀') || mainApps.includes('파워포인트') || mainApps.includes('한글')) {
-                cpuScore += 0; // Basic apps don't significantly increase score
-            }
+            recommendBtn.addEventListener('click', () => {
+                saveStepData(currentStep);
+                calculateRecommendation();
+                quizArea.style.display = 'none';
+                resultDiv.style.display = 'block';
+            });
 
-            // 3. 이 노트북을 몇 년 정도 사용할 예정이신가요?
-            const usageYears = document.querySelector('input[name="usage_years"]:checked').value;
-            if (usageYears === 'medium') {
-                cpuScore += 1;
-                ramScore += 1;
-            } else if (usageYears === 'long') {
-                cpuScore += 2;
-                ramScore += 2;
-            }
+            startOverBtn.addEventListener('click', () => {
+                resultDiv.style.display = 'none';
+                quizArea.style.display = 'block';
+                showStep(1);
+                // Clear form data for a fresh start
+                for (const key in formData) {
+                    delete formData[key];
+                }
+                document.getElementById('mainApps').value = '';
+                document.getElementById('favoriteGame').value = '';
+            });
 
-            // 4. 자주 하는 게임이 있으신가요?
-            const favoriteGame = document.getElementById('favoriteGame').value.toLowerCase();
-            if (favoriteGame.includes('배틀그라운드') || favoriteGame.includes('사이버펑크') || favoriteGame.includes('위쳐') || favoriteGame.includes('스타필드') || favoriteGame.includes('레드 데드 리뎀션')) {
-                cpuScore += 3; // High-end games
-                ramScore += 2;
-            } else if (favoriteGame.includes('오버워치') || favoriteGame.includes('에이펙스 레전드') || favoriteGame.includes('발로란트') || favoriteGame.includes('원신')) {
-                cpuScore += 2; // Medium-high games
-                ramScore += 1;
-            } else if (favoriteGame.includes('리그오브레전드') || favoriteGame.includes('롤') || favoriteGame.includes('메이플스토리') || favoriteGame.includes('서든어택')) {
-                cpuScore += 1; // Low-medium games
-            }
+            const calculateRecommendation = () => {
+                let cpuScore = 0;
+                let ramScore = 0;
 
-            // 5. 화상 회의나 온라인 강의 비중이 높은가요?
-            const videoConference = document.querySelector('input[name="video_conference"]:checked').value;
-            if (videoConference === 'yes') {
-                ramScore += 0.5; // Slightly increased RAM for stable video calls
-            }
+                // 1. Simultaneous apps
+                if (formData.simultaneous_apps === 'medium') { cpuScore += 1; ramScore += 1; } 
+                else if (formData.simultaneous_apps === 'high') { cpuScore += 2; ramScore += 2; }
 
-            // 6. 파일은 주로 어디에 저장하시나요? - This question is more for storage (SSD size), not directly CPU/RAM.
-            //    I'll ignore it for CPU/RAM recommendation for now, as the request was only for CPU/RAM.
+                // 2. Main apps
+                const mainApps = formData.mainApps.toLowerCase();
+                if (mainApps.includes('캐드') || mainApps.includes('cad') || mainApps.includes('영상 편집') || mainApps.includes('3d') || mainApps.includes('렌더링')) {
+                    cpuScore += 3; ramScore += 3;
+                } else if (mainApps.includes('포토샵') || mainApps.includes('일러스트') || mainApps.includes('디자인') || mainApps.includes('프로그래밍') || mainApps.includes('코딩')) {
+                    cpuScore += 2; ramScore += 2;
+                }
 
-            // 7. 화면 터치나 펜 기능이 필요하신가요? - This is a feature, not CPU/RAM related.
-            //    I'll ignore it for CPU/RAM recommendation.
+                // 3. Usage years
+                if (formData.usage_years === 'medium') { cpuScore += 1; ramScore += 1; }
+                else if (formData.usage_years === 'long') { cpuScore += 2; ramScore += 2; }
 
-            // Determine CPU tier
-            let recommendedCpuIndex = 0;
-            if (cpuScore >= 7) {
-                recommendedCpuIndex = 3; // i9/Ryzen 9
-            } else if (cpuScore >= 4) {
-                recommendedCpuIndex = 2; // i7/Ryzen 7
-            } else if (cpuScore >= 1) {
-                recommendedCpuIndex = 1; // i5/Ryzen 5
-            }
-            // Ensure index is within bounds
-            recommendedCpuIndex = Math.min(recommendedCpuIndex, cpuTiers.length - 1);
+                // 4. Favorite game
+                const favoriteGame = formData.favoriteGame.toLowerCase();
+                if (favoriteGame.includes('배틀그라운드') || favoriteGame.includes('사이버펑크') || favoriteGame.includes('스타필드')) {
+                    cpuScore += 3; ramScore += 2;
+                } else if (favoriteGame.includes('오버워치') || favoriteGame.includes('에이펙스 레전드') || favoriteGame.includes('발로란트')) {
+                    cpuScore += 2; ramScore += 1;
+                } else if (favoriteGame.includes('리그오브레전드') || favoriteGame.includes('롤')) {
+                    cpuScore += 1;
+                }
 
-            // Determine RAM tier
-            let recommendedRamIndex = 0;
-            if (ramScore >= 5) {
-                recommendedRamIndex = 2; // 32GB+
-            } else if (ramScore >= 2) {
-                recommendedRamIndex = 1; // 16GB
-            }
-            // Ensure index is within bounds
-            recommendedRamIndex = Math.min(recommendedRamIndex, ramTiers.length - 1);
+                // 5. Video conference
+                if (formData.video_conference === 'yes') { ramScore += 0.5; }
 
-            cpuResult.textContent = cpuTiers[recommendedCpuIndex];
-            ramResult.textContent = ramTiers[recommendedRamIndex];
-            resultDiv.style.display = 'block';
+                // Tiers
+                const cpuTiers = [
+                    "Intel Core i3 / AMD Ryzen 3 (웹 서핑, 문서 작업)",
+                    "Intel Core i5 / AMD Ryzen 5 (일상적인 멀티태스킹, 가벼운 게임)",
+                    "Intel Core i7 / AMD Ryzen 7 (전문 작업, 고사양 멀티태스킹, 게임)",
+                    "Intel Core i9 / AMD Ryzen 9 (최고 사양 전문 작업, 4K 영상 편집)"
+                ];
+                const ramTiers = ["8GB", "16GB", "32GB 이상"];
+
+                let cpuIndex = 0;
+                if (cpuScore >= 7) cpuIndex = 3;
+                else if (cpuScore >= 4) cpuIndex = 2;
+                else if (cpuScore >= 1) cpuIndex = 1;
+
+                let ramIndex = 0;
+                if (ramScore >= 5) ramIndex = 2;
+                else if (ramScore >= 2) ramIndex = 1;
+                
+                cpuResult.textContent = cpuTiers[Math.min(cpuIndex, cpuTiers.length - 1)];
+                ramResult.textContent = ramTiers[Math.min(ramIndex, ramTiers.length - 1)];
+            };
+            
+            // Initialize view
+            showStep(1);
         });
     </script>
-
 </body>
+
 </html>
